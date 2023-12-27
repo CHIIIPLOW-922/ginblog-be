@@ -7,6 +7,7 @@ import (
 
 func InitRouter() {
 	r := gin.Default()
+	r.GET("/test", v1.test)
 	// 初始化路由
 	// 启动服务
 	r.Run(utils.HttpPort)
