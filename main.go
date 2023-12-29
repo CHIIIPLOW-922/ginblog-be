@@ -6,6 +6,7 @@ import (
 	"ginblog-be/routers"
 	"ginblog-be/settings"
 	"ginblog-be/utils/minio"
+	"ginblog-be/utils/snowflake"
 )
 
 func main() {
@@ -16,6 +17,10 @@ func main() {
 	}
 	if err := minio.InitMinioClient(settings.Conf.MinioConfig); err != nil {
 		fmt.Printf("init minio failed, err:%v\n", err)
+		return
+	}
+	if err := snowflake.Init(1); err != nil {
+		fmt.Printf("init snowflake failed, err:%v\n", err)
 		return
 	}
 	if err := mysql.InitDB(settings.Conf.MySQLConfig); err != nil {

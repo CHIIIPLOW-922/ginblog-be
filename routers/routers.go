@@ -13,6 +13,7 @@ func SetupRoutes() *gin.Engine {
 		v1.GET("/getAllUsers", controller.GetAllUsers)
 		v1.GET("/getAllComments", controller.GetAllComments)
 		v1.POST("/uploadFile", controller.UploadFile)
+		v1.POST("/saveUser", controller.SaveUser)
 	}
 	return r
 }

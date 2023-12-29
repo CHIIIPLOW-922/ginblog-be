@@ -6,6 +6,7 @@ require (
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/minio/minio-go/v7 v7.0.66
+	github.com/sony/sonyflake v1.2.0
 	github.com/spf13/viper v1.18.2
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.5
