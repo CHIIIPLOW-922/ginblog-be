@@ -24,6 +24,16 @@ func ResOk(c *gin.Context, code code.MyCode, data interface{}, total interface{}
 	c.JSON(http.StatusOK, Json)
 }
 
+func ResOkWithMsg(c *gin.Context, code code.MyCode, msg string, data interface{}, total interface{}) {
+	Json := &Result{
+		Code:  code,
+		Msg:   msg,
+		Data:  data,
+		Total: total,
+	}
+	c.JSON(http.StatusOK, Json)
+}
+
 func ResErr(c *gin.Context, code code.MyCode) {
 	Json := &Result{
 		Code:  code,

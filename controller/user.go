@@ -5,7 +5,7 @@ import (
 	"ginblog-be/enum/code"
 	"ginblog-be/models"
 	"ginblog-be/result"
-
+	"ginblog-be/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,9 +26,9 @@ func SaveUser(c *gin.Context) {
 		result.ResErrWithMsg(c, code.CodeBadRequest, "入参错误")
 		return
 	}
-	err := mysql.InsertUser(user)
+	err := service.SaveUser(user)
 	if err != nil {
-		result.ResErrWithMsg(c, code.CodeBadRequest, "保存失败")
+		result.ResErrWithMsg(c, code.CodeBadRequest, err.Error())
 		return
 	}
 	result.ResOk(c, code.CodeSuccess, &user, nil)

@@ -6,6 +6,7 @@ import (
 	"ginblog-be/routers"
 	"ginblog-be/settings"
 	"ginblog-be/utils/minio"
+	"ginblog-be/utils/redis"
 	"ginblog-be/utils/snowflake"
 )
 
@@ -29,6 +30,13 @@ func main() {
 	}
 	//程序退出
 	defer mysql.Close()
+
+	if err := redis.InitRedis(settings.Conf.RedisConfig); err != nil {
+		fmt.Printf("init redis failed, err:%v\n", err)
+		return
+	}
+	//redis关闭
+	defer redis.Close()
 
 	r := routers.SetupRoutes()
 	err := r.Run(fmt.Sprintf(":%d", settings.Conf.Port))

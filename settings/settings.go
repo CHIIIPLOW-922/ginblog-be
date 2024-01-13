@@ -48,6 +48,8 @@ type RedisConfig struct {
 	MinIdleConns int    `mapstructure:"min_idle_conns"`
 }
 
+const ConfigFilepath = "./config/config.yaml"
+
 // type LogConfig struct {
 // 	Level      string `mapstructure:"level"`
 // 	Filename   string `mapstructure:"filename"`
@@ -60,7 +62,7 @@ var Conf = new(AppConfig)
 
 func Init() error {
 	//读取配置文件
-	viper.SetConfigFile("./config/config.yaml")
+	viper.SetConfigFile(ConfigFilepath)
 	//读取环境变量
 	viper.WatchConfig()
 	//监控配置文件变化
