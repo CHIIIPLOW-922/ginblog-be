@@ -5,11 +5,20 @@ import (
 	"ginblog-be/enum/code"
 	"ginblog-be/models"
 	"ginblog-be/result"
+	"ginblog-be/routers"
 	"ginblog-be/service"
+
 	"github.com/gin-gonic/gin"
 )
 
-func GetAllUsers(c *gin.Context) {
+func Init() {
+	routers.Register(&User{})
+}
+
+type User struct {
+}
+
+func (u *User) GetAllUsers(c *gin.Context) {
 
 	//查询所有用户
 	users, total := mysql.GetAllUsers()
@@ -20,7 +29,7 @@ func GetAllUsers(c *gin.Context) {
 	result.ResOk(c, code.CodeSuccess, users, total)
 }
 
-func SaveUser(c *gin.Context) {
+func (u *User) SaveUser(c *gin.Context) {
 	var user *models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
 		result.ResErrWithMsg(c, code.CodeBadRequest, "入参错误")
